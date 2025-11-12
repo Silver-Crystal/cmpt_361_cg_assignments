@@ -9,6 +9,7 @@
       const pixelsWide = urlParams.get('pixelsWide') || 64;
       const saveImageFilename = urlParams.get('saveImage');
       const urlInput = urlParams.get('input');
+      // wouldn't work if we were not importing from a3.js 
       const codeFile = urlParams.get('codeFile') || './a3.js';
       const { Rasterizer, Framebuffer, DEF_INPUT } = await import(codeFile);
 

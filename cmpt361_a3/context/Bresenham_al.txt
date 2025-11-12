@@ -1,0 +1,68 @@
+The DDA algorithm appears efficient. Certainly it can be coded easily, but it requires
+a floating-point addition for each pixel generated. Bresenham derived a linerasterization
+algorithm that, remarkably, avoids all floating-point calculations and
+has become the standard algorithm used in hardware and software rasterizers.
+We assume, as we did with theDDA algorithm, that the line segment lies between
+the integer points (x1, y1) and (x2, y2) and that the slope satisfies
+0 = m = 1.
+This slope condition is crucial for the algorithm, as we can see with the aid of Figure
+8.31. Suppose that we are somewhere in the middle of the scan conversion of our
+line segment and have just placed a pixel at (i + 1/2 , j + 1/2 ). We know that the line of
+which the segment is part can be represented as
+y = mx + h.
+At x = i + 1/2 , this line must pass within one-half the length of the pixel at (i + 1/2 , j + 1/2 );^3(footnote- We are assuming that the pixels’ centers are located halfway between integers)
+otherwise, the rounding operation would not have generated this pixel. If we move ahead to x = i + 3/2 , the slope condition indicates that we must set the color
+of one of only two possible pixels: either the pixel at (i + 3/2 , j + 1/2 ) or the pixel at
+(i + 3/2 , j + 3/2 ). Having reduced our choices to two pixels, we can pose the problem
+anew in terms of the decision variable d = a - b, where a and b are the distances
+between the line and the upper and lower candidate pixels at x = i + 3/2 , as shown
+in Figure 8.32. If d is positive, the line passes closer to the lower pixel, so we choose
+the pixel at (i + 3/2 , j + 1/2 ); otherwise, we choose the pixel at (i + 3/2 , j + 3/2 ). Although
+we could compute d by computing y = mx + b, we hesitate to do so because m is a
+floating-point number.
+We obtain the computational advantages of Bresenham’s algorithm through two
+further steps. First, we replace floating-point operations with fixed-point operations.
+Second, we apply the algorithm incrementally. We start by replacing d with the new
+decision variable
+d = (x2 - x1)(a - b) = x(a - b),
+( - delta)
+a change that cannot affect which pixels are drawn, because it is only the sign of the
+decision variable that matters. If we substitute for a and b, using the equation of the
+line and noting that
+
+m = (y2- y1)/(x2 - x1)= y/x
+h = y2 - mx2,
+then we can see that d is an integer. We have eliminated floating-point calculations,
+but the direct computation of d requires a fair amount of fixed-point arithmetic.
+Let us take a slightly different approach. Suppose that dk is the value of d at
+x = k + 1/2 . We would like to compute dk+1 incrementally from dk. There are two
+situations, depending on whether or not we incremented the y location of the pixel
+at the previous step; these situations are shown in Figure 8.33. By observing that a
+is the distance between the location of the upper candidate location and the line, we
+see that a increases by m only if x was increased by the previous decision; otherwise,
+it decreases by m - 1. Likewise, b either decreases by m or increases by 1- m when
+we increment x. Multiplying by x, we find that the possible changes in d are either
+-2y or 2(x - y).We can state this result in the form
+
+dk+1= dk - 
+ 2y if dk > 0
+2(y - x) otherwise.
+( - signifies the start of piecewise function {  )
+(dk+1 signifies d of (k+1), dk signifies d of k)
+The calculation of each successive pixel in the color buffer requires only an addition
+and a sign test. This algorithm is so efficient that it has been incorporated as a single
+instruction on graphics chips. See Exercise 8.14 for calculation of the initial value d0
+
+8.14 Write a program to generate the locations of pixels along a rasterized line
+segment using Bresenham’s algorithm. Check that your program works for all
+slopes and all possible locations of the endpoints. What is the initial value of
+the decision variable?
+
+
+
+
+IF d = a- b, a is the length of the  upper region of the unit cell that the line passes through and b is the 1- a, (basically the region below the line),  then if d > 0, that means the line is passing closer to the lower y value, so we *don't* increment the y value, similarly, if d < 0, the line is passing closer to the upper y value, so we do increment y. The textbook mention that for any
+if d(current > 0) 
+    d(next) = d(current) - 2 * delta y
+else
+    d(next) = d(current) - 2 * (delta y - delta x)
