@@ -97,7 +97,7 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
 
 
   pointIsInsideTriangle (vertex1,vertex2,vertex3,point) {
-    console.log("Entered the helper function pointIsInsideTriangle." );
+    // console.log("Entered the helper function pointIsInsideTriangle." );
     // ax + by + c = 0;, if this is greater than 0, then is on the left of a line
     const line1 = [vertex1,vertex2];
     const line2 = [vertex2,vertex3];
@@ -105,23 +105,25 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
     
     // found out about arrow functions :p
     const pointIsInsideOrOnEdge = (line,point) => {
-      console.log("Entered the helper function pointIsInsideOrOnEdge." );
+      // console.log("Entered the helper function pointIsInsideOrOnEdge." );
 
       const [
         [x0, y0, ,],
         [x1, y1, ,]
       ] = line;
       const [x,y] = point;
+      // trying to implement ax + by + c
       let [a, b, c] = [
         y1 - y0,
         x0 - x1,
         x0 * y1 - x1 * y0
+        // x1*y0 - x0*y1
       ];
       // for c, the video shows x0y1 - x1y0, but my notes from class say x1y0 - x0y1. if there are any problems that can be solved by changing that, do it.
       let val = a * x + b * y + c;
       // ans = [val > 0, val == 0];
       let ans = [val > 0, val == 0];
-      console.log("returning " + ans + "from the funciton.");
+      // console.log("returning " + ans + "from the function pointIsInsideOrOnEdge.");
       return ans;
     }
     // const triangle = [vertex1, vertex2, vertex3];
@@ -131,11 +133,15 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
 
     
     let val1 = pointIsInsideOrOnEdge(line1,point); let val2  = pointIsInsideOrOnEdge(line2, point); let val3 = pointIsInsideOrOnEdge(line3, point);
-    if (val1[0] == 1 && val2[0] == 1 && val3[0] == 1) {
-      
+    // console.log("Reached line 134.");
+    // console.log("val1[0]: " + val1[0]+ ", val2[0]: "+ val2[0] + ", val3[0]: " + val3[0] + ".");
+    // console.log("val1[0] && val2[0] && val3[0]: " + val1[0] && val2[0] && val3[0] );
+    if (val1[0] && val2[0] && val3[0] ) {
+      // console.log("The point is on the left of all the sides, return 1.");
       return 1;
     }
     else {
+      // console.log("Entered the else statement as the point was not strictly inside the triangle.");
       // let line = line1;
 
     // else if (val2[1] == 1) {
@@ -149,20 +155,30 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
       // the frick, why is it solved if i add val1 at the end
       let lineAll = [line1, line2, line3, line1]; // i added line 1 at the end so i can just do i++ and still access the same element- that i want to access, line 1
       for (let i = 0; i < 3; i++) {
+        // console.log("i: " + i);
         let[[xtemp0, ytemp0, ,], [xtemp1, ytemp1, ,]] = lineAll[i];  // try removing x here as we have no need for it.
-        console.log("ytemp0: " + ytemp0);
-        console.log("ytemp1: " + ytemp1);
-        let [[xtemp2, ytemp2],[]] = lineAll[i++];
-        console.log("ytemp2 for now: " + ytemp2);
+        // console.log("ytemp0: " + ytemp0);
+        // console.log("ytemp1: " + ytemp1);
+        // let [[xtemp2, ytemp2],[]] = lineAll[i++];
+        let [[xtemp2, ytemp2],[]] = lineAll[i+1];
+        // console.log("ytemp2 for now: " + ytemp2);
+        // console.log(valAll[i][1]);
         if (valAll[i][1] == 1) {
+          // console.log("Passed the check valAll[i][1] == 1.");
+          // console.log("i.e " + valAll[i][1] + " == 1: " + valAll[i][1]); 
           if (ytemp0 == ytemp1 && ytemp1 > ytemp2) { // checks if line 1 is the top line
             // first checks if the two vertex making the line have the same y, basically are horizontal, then goes on to check if one of them is higher than the last point of the third vertex.
+            // console.log("exiting the pointIsInsideTriangle function with a return value of 1 from the first if condition with i: " + i + ".");
             return 1;
           }
-          else if (ytemp1 > ytemp0) return 1; // basically is a left edge.
+          else if (ytemp1 > ytemp0) {
+            // console.log("exiting the pointIsInsideTriangle function with a return value of 1 from the first if condition with i: " + i + ".");
+            return 1; // basically is a left edge.
+          }
         }
       }
       
+      // console.log("exiting the pointIsInsideTriangle function with a return value of 0 .");
       return 0;
       // i think i see why one would use ts now T-T
     }
@@ -180,26 +196,32 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
     this.setPixel(Math.floor(x2), Math.floor(y2), [r2, g2, b2]);
     this.setPixel(Math.floor(x3), Math.floor(y3), [r3, g3, b3]);
     
+    let color = [r3, g3, b3];
+
     let [xmin, xmax, ymin, ymax]= [
       Math.ceil(Math.min(x1, x2, x3)),
       Math.ceil(Math.max(x1, x2, x3)),
       Math.ceil(Math.min(y1, y2, y3)),
       Math.ceil(Math.max(y1, y2, y3))
     ];
+    console.log("Min x value: " + xmin + ", Min y value: " + ymin + ", Max x value: " + xmax + ", Max y value: " + ymax);
     // let [xstart, ystart] = [xmin,ymin];
     // the origin (0,0) is in top left corner, so x and y are min in the top left corner of the 'bounding box' that prof mentions in the G4 video.
     // so idea is to loop left to right like we normally do in arrays
     // for that the outer loop needs to be y, and inner loop needs to be x(figured it out after a sec, was doing x and y at the start)
     for (let y = ymin; y <= ymax; y++) {
+      console.log("Y value: " + y);
       for (let x = xmin; x <= xmax; x++ ) {
+        console.log("X value: " + x);
         let p = [x,y];
-        if (this.pointIsInsideTriangle(v1, v2, v3, p) == 1) {
+        if (this.pointIsInsideTriangle(v1, v2, v3, p)) {
           console.log("returned 1 from the function, coloring this pixel now.")
-          this.setPixel(x, y, [160,160,160]);
+          this.setPixel(x, y, color);
+          // this.setPixel(x, y, [160,160,160]);
         }
       }
     }
-
+    console.log("Exiting the drawTriangle function.");
   }
 }
 
