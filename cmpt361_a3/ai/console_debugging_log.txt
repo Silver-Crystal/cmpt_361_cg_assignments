@@ -1,0 +1,91 @@
+  Point [45,52]: ON EDGE (checking top-left rule): val1=1470.00, val2=0.00, val3=294.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [46,52]: ON EDGE (checking top-left rule): val1=1512.00, val2=0.00, val3=252.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [47,52]: ON EDGE (checking top-left rule): val1=1554.00, val2=0.00, val3=210.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [48,52]: ON EDGE (checking top-left rule): val1=1596.00, val2=0.00, val3=168.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [49,52]: ON EDGE (checking top-left rule): val1=1638.00, val2=0.00, val3=126.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [50,52]: ON EDGE (checking top-left rule): val1=1680.00, val2=0.00, val3=84.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [51,52]: ON EDGE (checking top-left rule): val1=1722.00, val2=0.00, val3=42.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=no a3.js:204:15
+    -> EXCLUDED (on edge but not top/left) a3.js:218:17
+  Point [52,52]: ON EDGE (checking top-left rule): val1=1764.00, val2=0.00, val3=0.00 a3.js:200:15
+findTopEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:102:13
+  -> TopEdgeExists=0, lineNumber=0 a3.js:119:13
+findLeftEdge: v1=(10,10) v2=(10,52) v3=(52,52) a3.js:126:15
+  -> Checking edge v1->v2: y2=52 vs y1=10, goes downward a3.js:129:15
+  -> Checking edge v2->v3: y3=52 vs y2=52, goes horizontal a3.js:135:15
+  -> Checking edge v3->v1: y1=10 vs y3=52, goes upward a3.js:149:15
+     -> Left edge: line 2 (v3->v1) [first left edge] a3.js:160:19
+  -> Result: LeftEdge1=1 (line 2), LeftEdge2=0 (line 0) a3.js:163:15
+    Edges on point: val0=no, val1=YES, val2=YES a3.js:204:15
+    -> INCLUDED via left edge 1 (line 2) a3.js:211:17
+
+​
+

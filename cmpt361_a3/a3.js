@@ -96,95 +96,107 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
   }
 
 
-  pointIsInsideTriangle (vertex1,vertex2,vertex3,point) {
-    // console.log("Entered the helper function pointIsInsideTriangle." );
-    // ax + by + c = 0;, if this is greater than 0, then is on the left of a line
-    const line1 = [vertex1,vertex2];
-    const line2 = [vertex2,vertex3];
-    const line3 = [vertex3,vertex1];
-    
-    // found out about arrow functions :p
-    const pointIsInsideOrOnEdge = (line,point) => {
-      // console.log("Entered the helper function pointIsInsideOrOnEdge." );
 
+  findTopEdge  (T)  {
+    let TopEdgeExists = 0; let lineNumber = 0; let [v1, v2, v3] = T; let [x1, y1,] = v1; let [x2, y2, ] = v2; let [x3, y3, ] = v3;
+    if ( (y1 == y2) && (y1 < y3)) {  // checks if y1 and y2 are on the same level followed by checking // basically, checks if y1 and thus, y2 are higher
+      TopEdgeExists = 1;
+      lineNumber = 0;     // line 1(index 0) is made up of v1 <->v2
+    }
+    // else if ((y1 == y3) && (y1 < y2)) { // checks if y1 and y2 are same, thus, form a horizontal line     followed by // checks if y1, thus in turn y3, are higher than y2
+    else if ((y1 == y3) && (y1 > y2)) { 
+        TopEdgeExists = 1;
+        lineNumber = 2;   // line 3(index 2) is made up of v3<->v1
+    }
+    else if ( (y2 == y3) && (y2 < y1)) { // checks if y2 and y3 form a horizontal line. followed by// checks if y2 and y3 are less than y1, and thus in turn, higher than y1
+        TopEdgeExists = 1;
+        lineNumber = 1;   // line 2 (index 1) is made up of v2<->v3
+    }
+    return [TopEdgeExists, lineNumber];
+  }
+  findLeftEdge (T) {
+      // end point is strictly less than starting point(of a line)
+      // end point of line 1 is v2, line 2 is v3, line 3 is v1
+      let LeftEdge1Exists = 0; let LeftEdge2Exists = 0; let lineNumberForLeftEdge1 = 0; let lineNumberForLeftEdge2 = 0; let [v1, v2, v3] = T; let [x1, y1, ] = v1; let [x2, y2, ] = v2; let [x3, y3, ] = v3;
+      // lets just assume, we only need to check y, wait thats true, cause of the anticlockwise rule, we only need that
+      // if (y2 > y1) { // check end point of line 1 is strictly lower than starting point of line 1 ], so in our coordinate3 system, y2 has a higher value.
+      if (y2 < y1) {
+        LeftEdge1Exists = 1;
+        lineNumberForLeftEdge1 = 0;
+      }
+      if (y3 > y2) {
+      // if (y3 < y2) {
+        if (LeftEdge1Exists) {
+          LeftEdge2Exists = 1;
+          lineNumberForLeftEdge2 = 1; 
+        }
+        else {
+          LeftEdge1Exists = 1;
+          lineNumberForLeftEdge1 = 1;
+        }
+      }
+      // if (y1 > y3) { // check if line 3, - end point - vertex 1, is lower than vertex 3, i.e y value of v1 is greater than y value of v3
+      if (y1 < y3) {
+        if (LeftEdge1Exists) {
+          LeftEdge2Exists = 1;
+          lineNumberForLeftEdge2 = 2;
+        }
+        else {
+          LeftEdge1Exists = 1;
+          lineNumberForLeftEdge1 = 2;
+        }
+      }
+      return [LeftEdge1Exists, lineNumberForLeftEdge1, LeftEdge2Exists, lineNumberForLeftEdge2];
+  }
+
+  pointIsInsideOrOnEdge (line,point) {
+      // checks if point is on the left of the given line
       const [
-        [x0, y0, ,],
-        [x1, y1, ,]
+        [x1, y1, ,],
+        [x2, y2, ,]
       ] = line;
       const [x,y] = point;
       // trying to implement ax + by + c
-      let [a, b, c] = [
-        y1 - y0,
-        x0 - x1,
-        x0 * y1 - x1 * y0
-        // x1*y0 - x0*y1
-      ];
-      // for c, the video shows x0y1 - x1y0, but my notes from class say x1y0 - x0y1. if there are any problems that can be solved by changing that, do it.
-      let val = a * x + b * y + c;
-      // ans = [val > 0, val == 0];
-      let ans = [val > 0, val == 0];
-      // console.log("returning " + ans + "from the function pointIsInsideOrOnEdge.");
-      return ans;
+     
+      let val = (x - x1) * (y2 - y1) - (y - y1) * (x2 - x1);
+      // the 'book' formula acording to chatgpt.
+      return val; 
+  }
+    
+  pointIsInsideTriangle (vertex1,vertex2,vertex3,point) {
+    // ax + by + c = 0;, if this is greater than 0, then is on the left of a line
+    // the format [x1,y1] == point is wrong, you CAN NOT compare two arrays, need to convert both to strings instead by using JSON.stringify
+    const line1 = [vertex1,vertex2]; const line2 = [vertex2,vertex3]; const line3 = [vertex3,vertex1]; const Triangle = [vertex1, vertex2, vertex3];
+    let pointIsInsideTriangleFlag = 0;
+    
+    // found out about arrow functions :p
+    
+    // functions moved from here to outside the function
+
+    let val1 = this.pointIsInsideOrOnEdge(line1,point); let val2  = this.pointIsInsideOrOnEdge(line2, point); let val3 = this.pointIsInsideOrOnEdge(line3, point);
+
+    if ( ( val1 > 0) && (val2 > 0) && (val3 > 0)) {
+      // if ( (val3 > 0) ) {
+      pointIsInsideTriangleFlag = 1;
     }
-    // const triangle = [vertex1, vertex2, vertex3];
-    // let [x0, y0] = vertex1; let [x1, y1] = vertex2; let [x2, y2] = vertex3;
-    
-
-
-    
-    let val1 = pointIsInsideOrOnEdge(line1,point); let val2  = pointIsInsideOrOnEdge(line2, point); let val3 = pointIsInsideOrOnEdge(line3, point);
-    // console.log("Reached line 134.");
-    // console.log("val1[0]: " + val1[0]+ ", val2[0]: "+ val2[0] + ", val3[0]: " + val3[0] + ".");
-    // console.log("val1[0] && val2[0] && val3[0]: " + val1[0] && val2[0] && val3[0] );
-    if (val1[0] && val2[0] && val3[0] ) {
-      // console.log("The point is on the left of all the sides, return 1.");
-      return 1;
+    else if ( ( (val1 >= 0) && (val2 >= 0) && (val3 >= 0)) ) {
+      let vals = [val1, val2, val3];
+      let [TopEdgeExists, lineNumberForTopEdge] = this.findTopEdge(Triangle);
+      let [LeftEdge1Exists, lineNumberForLeftEdge1, LeftEdge2Exists, lineNumberForLeftEdge2] = this.findLeftEdge(Triangle);
+      if (TopEdgeExists && (vals[lineNumberForTopEdge] == 0)) {
+          pointIsInsideTriangleFlag = 1;
+      }
+      if (LeftEdge1Exists && (vals[lineNumberForLeftEdge1] == 0)) {  
+        pointIsInsideTriangleFlag = 1;
+      }
+      if (LeftEdge2Exists && (vals[lineNumberForLeftEdge2] == 0)) {
+        pointIsInsideTriangleFlag = 1;
+      }
     }
     else {
-      // console.log("Entered the else statement as the point was not strictly inside the triangle.");
-      // let line = line1;
-
-    // else if (val2[1] == 1) {
-        // if (y1 == y2 && y2 > y0) return 1;  
-      // }
-      // else if (val3[1] == 1) 
-        // if (y0 == y2 && y2 > y1) return 1;
-      // else {
-        // iterate through all lines and check if the line is a left edge or not, and if the point lies on that edge or not
-      let valAll = [val1, val2, val3, val1]; 
-      // the frick, why is it solved if i add val1 at the end
-      let lineAll = [line1, line2, line3, line1]; // i added line 1 at the end so i can just do i++ and still access the same element- that i want to access, line 1
-      for (let i = 0; i < 3; i++) {
-        // console.log("i: " + i);
-        let[[xtemp0, ytemp0, ,], [xtemp1, ytemp1, ,]] = lineAll[i];  // try removing x here as we have no need for it.
-        // console.log("ytemp0: " + ytemp0);
-        // console.log("ytemp1: " + ytemp1);
-        // let [[xtemp2, ytemp2],[]] = lineAll[i++];
-        let [[xtemp2, ytemp2],[]] = lineAll[i+1];
-        // console.log("ytemp2 for now: " + ytemp2);
-        // console.log(valAll[i][1]);
-        if (valAll[i][1] == 1) {
-          // console.log("Passed the check valAll[i][1] == 1.");
-          // console.log("i.e " + valAll[i][1] + " == 1: " + valAll[i][1]); 
-          if (ytemp0 == ytemp1 && ytemp1 > ytemp2) { // checks if line 1 is the top line
-            // first checks if the two vertex making the line have the same y, basically are horizontal, then goes on to check if one of them is higher than the last point of the third vertex.
-            // console.log("exiting the pointIsInsideTriangle function with a return value of 1 from the first if condition with i: " + i + ".");
-            return 1;
-          }
-          else if (ytemp1 > ytemp0) {
-            // console.log("exiting the pointIsInsideTriangle function with a return value of 1 from the first if condition with i: " + i + ".");
-            return 1; // basically is a left edge.
-          }
-        }
-      }
-      
-      // console.log("exiting the pointIsInsideTriangle function with a return value of 0 .");
-      return 0;
-      // i think i see why one would use ts now T-T
     }
+    return pointIsInsideTriangleFlag;
   }
-  
-
 
   // take 3 vertices defining a solid triangle and rasterize to framebuffer
   drawTriangle (v1, v2, v3) {
@@ -192,42 +204,37 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
     const [x2, y2, [r2, g2, b2]] = v2;
     const [x3, y3, [r3, g3, b3]] = v3;
     // TODO/HINT: use this.setPixel(x, y, color) in this function to draw triangle
-    this.setPixel(Math.floor(x1), Math.floor(y1), [r1, g1, b1]);
-    this.setPixel(Math.floor(x2), Math.floor(y2), [r2, g2, b2]);
-    this.setPixel(Math.floor(x3), Math.floor(y3), [r3, g3, b3]);
+    let [x1Floored, x2Floored, x3Floored, y1Floored, y2Floored, y3Floored] = [Math.floor(x1), Math.floor(x2), Math.floor(x3), Math.floor(y1), Math.floor(y2), Math.floor(y3)]; 
     
-    let color = [r3, g3, b3];
 
+    let color = [r3, g3, b3];
+    
+    
     let [xmin, xmax, ymin, ymax]= [
-      Math.ceil(Math.min(x1, x2, x3)),
-      Math.ceil(Math.max(x1, x2, x3)),
-      Math.ceil(Math.min(y1, y2, y3)),
-      Math.ceil(Math.max(y1, y2, y3))
+      Math.floor(Math.min(x1Floored, x2Floored, x3Floored)),
+      Math.ceil(Math.max(x1Floored, x2Floored, x3Floored)),
+      Math.floor(Math.min(y1Floored, y2Floored, y3Floored)),
+      Math.ceil(Math.max(y1Floored, y2Floored, y3Floored))
     ];
-    console.log("Min x value: " + xmin + ", Min y value: " + ymin + ", Max x value: " + xmax + ", Max y value: " + ymax);
     // let [xstart, ystart] = [xmin,ymin];
     // the origin (0,0) is in top left corner, so x and y are min in the top left corner of the 'bounding box' that prof mentions in the G4 video.
     // so idea is to loop left to right like we normally do in arrays
     // for that the outer loop needs to be y, and inner loop needs to be x(figured it out after a sec, was doing x and y at the start)
     for (let y = ymin; y <= ymax; y++) {
-      console.log("Y value: " + y);
-      for (let x = xmin; x <= xmax; x++ ) {
-        console.log("X value: " + x);
+      for (let x = xmin ; x <= xmax; x++ ) {
         let p = [x,y];
-        if (this.pointIsInsideTriangle(v1, v2, v3, p)) {
-          console.log("returned 1 from the function, coloring this pixel now.")
+        if (this.pointIsInsideTriangle(v1, v2, v3, p) == 1) {
           this.setPixel(x, y, color);
-          // this.setPixel(x, y, [160,160,160]);
         }
       }
     }
-    console.log("Exiting the drawTriangle function.");
-  }
+    }
 }
-
+ 
 ////////////////////////////////////////////////////////////////////////////////
 // EXTRA CREDIT: change DEF_INPUT to create something interesting!
 ////////////////////////////////////////////////////////////////////////////////
+
 const DEF_INPUT = [
   "v,10,10,1.0,0.0,0.0;",
   "v,52,52,0.0,1.0,0.0;",
@@ -238,13 +245,20 @@ const DEF_INPUT = [
   "v,10,10,1.0,1.0,1.0;",
   "v,10,52,0.0,0.0,0.0;",
   "v,52,52,1.0,1.0,1.0;",
-  "v,52,10,0.0,0.0,0.0;",
-  "l,4,5;",
-  "l,5,6;",
-  "l,6,7;",
-  "l,7,4;"
+  // "v,52,10,0.0,0.0,0.0;",
+  "v,52,10,0.0,0.0,0.0;"
+  // "l,4,5;",
+  // "l,5,6;",
+  // "l,6,7;",
+  // "l,7,4;"
 ].join("\n");
 
+// const DEF_INPUT = [
+//   "v,10,10,1.0,0.0,0.0;",
+//   "v,10,16,1.0,1.0,1.0;",
+//   "v,16,16,0.0,1.0,0.0;",
+//   "t, 0, 1, 2;"
+// ].join("\n");
 
 // DO NOT CHANGE ANYTHING BELOW HERE
 export { Rasterizer, Framebuffer, DEF_INPUT };

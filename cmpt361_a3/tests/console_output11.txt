@@ -1,0 +1,88 @@
+X value: 15 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 16 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 17 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 18 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 19 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 20 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 21 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 22 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 23 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 24 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 22 a3.js:354:19
+X value: 25 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+Y value: 23 a3.js:354:19
+X value: 16 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 17 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 18 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 19 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 20 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 21 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 22 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 23 a3.js:354:19
+X value: 23 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+Y value: 24 a3.js:354:19
+X value: 18 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 24 a3.js:354:19
+X value: 19 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 24 a3.js:354:19
+X value: 20 a3.js:355:19
+returned 1 from the function, coloring this pixel now. a3.js:356:19
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:238:15
+Y value: 24 a3.js:354:19
+X value: 21 a3.js:355:19
+returned 1 from the function, coloring this pixel now.

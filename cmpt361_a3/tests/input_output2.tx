@@ -1,0 +1,48 @@
+Rasterizer input:
+v,10,10,1.0,0.0,0.0;
+v,13,13,0.0,1.0,0.0;
+v,10,13,1.0,1.0,1.0;
+t, 0, 1, 2; rasterizer.js:8:13
+Drawing triangle: t, 0, 1, 2 rasterizer.js:36:15
+Min x value: 10, Min y value: 10, Max x value: 13, Max y value: 13 a3.js:337:13
+logging for this function run start! a3.js:111:15
+Entered the helper function pointIsInsideTriangle. a3.js:116:15
+Arguments: a3.js:117:15
+ vertex1: 10,10,1,0,0 a3.js:118:15
+ vertex2: 13,13,0,1,0 a3.js:118:52
+ vertex3: 10,13,1,1,1 a3.js:118:89
+ Point: 11,12 a3.js:118:126
+End of arguments. a3.js:119:15
+Function variables: a3.js:120:15
+ Lines: a3.js:121:15
+   line1: 10,10,1,0,0,13,13,0,1,0
+   line2: 13,13,0,1,0,10,13,1,1,1
+   line3: 10,13,1,1,1,10,10,1,0,0
+a3.js:122:15
+ Triangle: 10,10,1,0,0,13,13,0,1,0,10,13,1,1,1 a3.js:123:15
+Entered pointIsInsideOrOnEdge function. a3.js:137:17
+Point: 11,12 a3.js:138:17
+Line: 10,10,1,0,0,13,13,0,1,0 a3.js:139:17
+V1: 10,10 a3.js:140:17
+V2: 13,13 a3.js:141:17
+a: -3, b: 3, c: 0 a3.js:154:17
+ax + b*y + c = -33 + 36 + 0 a3.js:155:17
+Exiting from function with val = 3 a3.js:164:28
+Entered pointIsInsideOrOnEdge function. a3.js:137:17
+Point: 11,12 a3.js:138:17
+Line: 13,13,0,1,0,10,13,1,1,1 a3.js:139:17
+V1: 13,13 a3.js:140:17
+V2: 10,13 a3.js:141:17
+a: 0, b: -3, c: 39 a3.js:154:17
+ax + b*y + c = 0 + -36 + 39 a3.js:155:17
+Exiting from function with val = 3 a3.js:164:28
+Entered pointIsInsideOrOnEdge function. a3.js:137:17
+Point: 11,12 a3.js:138:17
+Line: 10,13,1,1,1,10,10,1,0,0 a3.js:139:17
+V1: 10,13 a3.js:140:17
+V2: 10,10 a3.js:141:17
+a: 3, b: 0, c: -30 a3.js:154:17
+ax + b*y + c = 33 + 0 + -30 a3.js:155:17
+Exiting from function with val = 3 a3.js:164:28
+The point is on the left of all the sides, change pointIsInsideTriangleFlag to 1. a3.js:236:15
+Returning from pointIsInsideTriangle with the flag with a value of : 1

@@ -1,5 +1,8 @@
 # CMPT 361 Assignment 3 - Rasterization Project
-
+### user additions
+-keep in mind that the coordinates start from the top left and then go down (so as you move down, y value increases, as you go right, the x value increases).
+- Whenever user prompts, check for all changes and refer to some necessary files such as- README.md(always check these, especially README.md for context). Also read any other files mentioned and shared by the user.
+-
 ## Project Overview
 This is a computer graphics assignment implementing line and triangle rasterization algorithms from scratch. The project uses a custom framebuffer and teaches fundamental graphics concepts like Bresenham's algorithm, barycentric coordinates, and the top-left rasterization rule.
 
