@@ -127,7 +127,7 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
       let lineAll = [line1, line2, line3, line1];
       for (let i = 0; i < 3; i++) {
         let[[xtemp0, ytemp0, ,], [xtemp1, ytemp1, ,]] = lineAll[i];
-        let [[xtemp2, ytemp2],[]] = lineAll[i+1];
+        let [[xtemp2, ytemp2, ,],[]] = lineAll[i+1];
         if (valAll[i][1] == 1) {
           if (ytemp0 == ytemp1 && ytemp1 > ytemp2) {
             return 1;
@@ -150,6 +150,12 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
     const [x, y] = p;
     
     const denominator = (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
+    
+    // Handle degenerate triangles (collinear vertices)
+    if (Math.abs(denominator) < 1e-10) {
+      return [0, 0, 0];
+    }
+    
     const lambda1 = ((y2 - y3) * (x - x3) + (x3 - x2) * (y - y3)) / denominator;
     const lambda2 = ((y3 - y1) * (x - x3) + (x1 - x3) * (y - y3)) / denominator;
     const lambda3 = 1 - lambda1 - lambda2;
