@@ -127,7 +127,7 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
       let lineAll = [line1, line2, line3, line1];
       for (let i = 0; i < 3; i++) {
         let[[xtemp0, ytemp0, ,], [xtemp1, ytemp1, ,]] = lineAll[i];
-        let [[xtemp2, ytemp2, ,],[]] = lineAll[i+1];
+        let [[xtemp2, ytemp2, ,]] = lineAll[i+1];
         if (valAll[i][1] == 1) {
           if (ytemp0 == ytemp1 && ytemp1 > ytemp2) {
             return 1;
