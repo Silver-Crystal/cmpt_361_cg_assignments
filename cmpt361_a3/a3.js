@@ -20,10 +20,7 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
   drawLine (v1, v2) {
     const [x1, y1, [r1, g1, b1]] = v1;
     const [x2, y2, [r2, g2, b2]] = v2;
-    // console.log("Start point coordinates of point 1: (" + x1 + ", " + y1 + ")");
-    // console.log("Start point coordinates of point 2: (" + x2 + ", " + y2 + ")");
-    // TODO/HINT: use this.setPixel(x, y, color) in this function to draw line
-    // look in the file generatedCode.js in folder ai on my github repo for code that copilot generated for this function(the code was used as reference material whenever i was stuck) github: https://github.com/Silver-Crystal/cmpt_361_cg_assignments/tree/main/cmpt361_a3
+    
     let color1 = [r1, g1, b1];
     let color2 = [r2, g2, b2];
     // store the floored, int version of x and y coordinates
@@ -71,16 +68,13 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
       
     }
     else {
-      // console.log("Entering else block.");
       let d = 2 * dx - dy;
-      // console.log("Starting d value: " + d);
       
       for (let i = 0; i <= dy; i++) {
         // i is the current step, dy is the total steps
-        let t  = (dy == 0)? 0 : i/dy;   // should it be i /dy or i / (dy+1)
+        let t  = (dy == 0)? 0 : i/dy;
         let color = this.interpolateColor(color1, color2, t);
         this.setPixel(x, y, color);
-        // console.log("Coordinates being coloured: (" + x + ", " + y + ")" );
 
         if (d >0) {
           x += sx;
@@ -97,105 +91,70 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
 
 
 
-  findTopEdge  (T)  {
-    let TopEdgeExists = 0; let lineNumber = 0; let [v1, v2, v3] = T; let [x1, y1,] = v1; let [x2, y2, ] = v2; let [x3, y3, ] = v3;
-    if ( (y1 == y2) && (y1 < y3)) {  // checks if y1 and y2 are on the same level followed by checking // basically, checks if y1 and thus, y2 are higher
-      TopEdgeExists = 1;
-      lineNumber = 0;     // line 1(index 0) is made up of v1 <->v2
-    }
-    // else if ((y1 == y3) && (y1 < y2)) { // checks if y1 and y2 are same, thus, form a horizontal line     followed by // checks if y1, thus in turn y3, are higher than y2
-    else if ((y1 == y3) && (y1 > y2)) { 
-        TopEdgeExists = 1;
-        lineNumber = 2;   // line 3(index 2) is made up of v3<->v1
-    }
-    else if ( (y2 == y3) && (y2 < y1)) { // checks if y2 and y3 form a horizontal line. followed by// checks if y2 and y3 are less than y1, and thus in turn, higher than y1
-        TopEdgeExists = 1;
-        lineNumber = 1;   // line 2 (index 1) is made up of v2<->v3
-    }
-    return [TopEdgeExists, lineNumber];
-  }
-  findLeftEdge (T) {
-      // end point is strictly less than starting point(of a line)
-      // end point of line 1 is v2, line 2 is v3, line 3 is v1
-      let LeftEdge1Exists = 0; let LeftEdge2Exists = 0; let lineNumberForLeftEdge1 = 0; let lineNumberForLeftEdge2 = 0; let [v1, v2, v3] = T; let [x1, y1, ] = v1; let [x2, y2, ] = v2; let [x3, y3, ] = v3;
-      // lets just assume, we only need to check y, wait thats true, cause of the anticlockwise rule, we only need that
-      // if (y2 > y1) { // check end point of line 1 is strictly lower than starting point of line 1 ], so in our coordinate3 system, y2 has a higher value.
-      if (y2 < y1) {
-        LeftEdge1Exists = 1;
-        lineNumberForLeftEdge1 = 0;
-      }
-      if (y3 > y2) {
-      // if (y3 < y2) {
-        if (LeftEdge1Exists) {
-          LeftEdge2Exists = 1;
-          lineNumberForLeftEdge2 = 1; 
-        }
-        else {
-          LeftEdge1Exists = 1;
-          lineNumberForLeftEdge1 = 1;
-        }
-      }
-      // if (y1 > y3) { // check if line 3, - end point - vertex 1, is lower than vertex 3, i.e y value of v1 is greater than y value of v3
-      if (y1 < y3) {
-        if (LeftEdge1Exists) {
-          LeftEdge2Exists = 1;
-          lineNumberForLeftEdge2 = 2;
-        }
-        else {
-          LeftEdge1Exists = 1;
-          lineNumberForLeftEdge1 = 2;
-        }
-      }
-      return [LeftEdge1Exists, lineNumberForLeftEdge1, LeftEdge2Exists, lineNumberForLeftEdge2];
-  }
-
-  pointIsInsideOrOnEdge (line,point) {
-      // checks if point is on the left of the given line
-      const [
-        [x1, y1, ,],
-        [x2, y2, ,]
-      ] = line;
-      const [x,y] = point;
-      // trying to implement ax + by + c
-     
-      let val = (x - x1) * (y2 - y1) - (y - y1) * (x2 - x1);
-      // the 'book' formula acording to chatgpt.
-      return val; 
-  }
-    
   pointIsInsideTriangle (vertex1,vertex2,vertex3,point) {
     // ax + by + c = 0;, if this is greater than 0, then is on the left of a line
-    // the format [x1,y1] == point is wrong, you CAN NOT compare two arrays, need to convert both to strings instead by using JSON.stringify
-    const line1 = [vertex1,vertex2]; const line2 = [vertex2,vertex3]; const line3 = [vertex3,vertex1]; const Triangle = [vertex1, vertex2, vertex3];
-    let pointIsInsideTriangleFlag = 0;
+    const line1 = [vertex1,vertex2];
+    const line2 = [vertex2,vertex3];
+    const line3 = [vertex3,vertex1];
     
-    // found out about arrow functions :p
-    
-    // functions moved from here to outside the function
-
-    let val1 = this.pointIsInsideOrOnEdge(line1,point); let val2  = this.pointIsInsideOrOnEdge(line2, point); let val3 = this.pointIsInsideOrOnEdge(line3, point);
-
-    if ( ( val1 > 0) && (val2 > 0) && (val3 > 0)) {
-      // if ( (val3 > 0) ) {
-      pointIsInsideTriangleFlag = 1;
+    const pointIsInsideOrOnEdge = (line,point) => {
+      const [
+        [x0, y0, ,],
+        [x1, y1, ,]
+      ] = line;
+      const [x,y] = point;
+      let [a, b, c] = [
+        y1 - y0,
+        x0 - x1,
+        x0 * y1 - x1 * y0
+      ];
+      let val = a * x + b * y + c;
+      let ans = [val > 0, val == 0];
+      return ans;
     }
-    else if ( ( (val1 >= 0) && (val2 >= 0) && (val3 >= 0)) ) {
-      let vals = [val1, val2, val3];
-      let [TopEdgeExists, lineNumberForTopEdge] = this.findTopEdge(Triangle);
-      let [LeftEdge1Exists, lineNumberForLeftEdge1, LeftEdge2Exists, lineNumberForLeftEdge2] = this.findLeftEdge(Triangle);
-      if (TopEdgeExists && (vals[lineNumberForTopEdge] == 0)) {
-          pointIsInsideTriangleFlag = 1;
-      }
-      if (LeftEdge1Exists && (vals[lineNumberForLeftEdge1] == 0)) {  
-        pointIsInsideTriangleFlag = 1;
-      }
-      if (LeftEdge2Exists && (vals[lineNumberForLeftEdge2] == 0)) {
-        pointIsInsideTriangleFlag = 1;
-      }
+    
+
+    
+    let val1 = pointIsInsideOrOnEdge(line1,point); 
+    let val2  = pointIsInsideOrOnEdge(line2, point); 
+    let val3 = pointIsInsideOrOnEdge(line3, point);
+    
+    if (val1[0] && val2[0] && val3[0] ) {
+      return 1;
     }
     else {
+      let valAll = [val1, val2, val3, val1]; 
+      let lineAll = [line1, line2, line3, line1];
+      for (let i = 0; i < 3; i++) {
+        let[[xtemp0, ytemp0, ,], [xtemp1, ytemp1, ,]] = lineAll[i];
+        let [[xtemp2, ytemp2],[]] = lineAll[i+1];
+        if (valAll[i][1] == 1) {
+          if (ytemp0 == ytemp1 && ytemp1 > ytemp2) {
+            return 1;
+          }
+          else if (ytemp1 > ytemp0) {
+            return 1;
+          }
+        }
+      }
+      return 0;
     }
-    return pointIsInsideTriangleFlag;
+  }
+  
+
+  // Helper function to compute barycentric coordinates
+  barycentricCoordinates(v1, v2, v3, p) {
+    const [x1, y1] = [v1[0], v1[1]];
+    const [x2, y2] = [v2[0], v2[1]];
+    const [x3, y3] = [v3[0], v3[1]];
+    const [x, y] = p;
+    
+    const denominator = (y2 - y3) * (x1 - x3) + (x3 - x2) * (y1 - y3);
+    const lambda1 = ((y2 - y3) * (x - x3) + (x3 - x2) * (y - y3)) / denominator;
+    const lambda2 = ((y3 - y1) * (x - x3) + (x1 - x3) * (y - y3)) / denominator;
+    const lambda3 = 1 - lambda1 - lambda2;
+    
+    return [lambda1, lambda2, lambda3];
   }
 
   // take 3 vertices defining a solid triangle and rasterize to framebuffer
@@ -203,32 +162,27 @@ class Rasterizer extends parentRetadedRasterizer { // name suggested by an intel
     const [x1, y1, [r1, g1, b1]] = v1;
     const [x2, y2, [r2, g2, b2]] = v2;
     const [x3, y3, [r3, g3, b3]] = v3;
-    // TODO/HINT: use this.setPixel(x, y, color) in this function to draw triangle
-    let [x1Floored, x2Floored, x3Floored, y1Floored, y2Floored, y3Floored] = [Math.floor(x1), Math.floor(x2), Math.floor(x3), Math.floor(y1), Math.floor(y2), Math.floor(y3)]; 
-    
-
-    let color = [r3, g3, b3];
-    
     
     let [xmin, xmax, ymin, ymax]= [
-      Math.floor(Math.min(x1Floored, x2Floored, x3Floored)),
-      Math.ceil(Math.max(x1Floored, x2Floored, x3Floored)),
-      Math.floor(Math.min(y1Floored, y2Floored, y3Floored)),
-      Math.ceil(Math.max(y1Floored, y2Floored, y3Floored))
+      Math.floor(Math.min(x1, x2, x3)),
+      Math.floor(Math.max(x1, x2, x3)),
+      Math.floor(Math.min(y1, y2, y3)),
+      Math.floor(Math.max(y1, y2, y3))
     ];
-    // let [xstart, ystart] = [xmin,ymin];
-    // the origin (0,0) is in top left corner, so x and y are min in the top left corner of the 'bounding box' that prof mentions in the G4 video.
-    // so idea is to loop left to right like we normally do in arrays
-    // for that the outer loop needs to be y, and inner loop needs to be x(figured it out after a sec, was doing x and y at the start)
+    
     for (let y = ymin; y <= ymax; y++) {
-      for (let x = xmin ; x <= xmax; x++ ) {
-        let p = [x,y];
-        if (this.pointIsInsideTriangle(v1, v2, v3, p) == 1) {
-          this.setPixel(x, y, color);
+      for (let x = xmin; x <= xmax; x++ ) {
+        let p = [x, y];
+        if (this.pointIsInsideTriangle(v1, v2, v3, p)) {
+          const [lambda1, lambda2, lambda3] = this.barycentricCoordinates(v1, v2, v3, p);
+          const r = lambda1 * r1 + lambda2 * r2 + lambda3 * r3;
+          const g = lambda1 * g1 + lambda2 * g2 + lambda3 * g3;
+          const b = lambda1 * b1 + lambda2 * b2 + lambda3 * b3;
+          this.setPixel(x, y, [r, g, b]);
         }
       }
     }
-    }
+  }
 }
  
 ////////////////////////////////////////////////////////////////////////////////
