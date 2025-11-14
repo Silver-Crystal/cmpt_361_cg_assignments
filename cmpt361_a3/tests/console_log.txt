@@ -1,0 +1,15 @@
+Rasterizer input:
+v,10,20,1.0,0.0,0.0;
+v,15,25,0.0,1.0,0.0;
+l,0,1; rasterizer.js:8:13
+Drawing line: l,0,1 rasterizer.js:45:15
+Drawing line from (10, 20) to (15, 25) a3.js:22:13
+  Horizontal case - Drawing pixel at (10, 20) on iteration i=0 a3.js:52:17
+  Horizontal case - Drawing pixel at (11, 21) on iteration i=1 a3.js:52:17
+  Horizontal case - Drawing pixel at (12, 22) on iteration i=2 a3.js:52:17
+  Horizontal case - Drawing pixel at (13, 23) on iteration i=3 a3.js:52:17
+  Horizontal case - Drawing pixel at (14, 24) on iteration i=4 a3.js:52:17
+  Horizontal case - Drawing pixel at (15, 25) on iteration i=5 a3.js:52:17
+
+​
+
