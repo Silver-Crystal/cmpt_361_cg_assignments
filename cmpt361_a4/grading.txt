@@ -1,0 +1,45 @@
+Triangle mesh generation
+3.00 / 3.00
+Description	
+- 3pt: fully correct implementation of all attributes for both cube and sphere triangle meshes: `positions`, `normals`, `uvCoords` (and `indices` for sphere are all populated correctly)
+- 2pt: one erroneous or missing attribute in cube or sphere mesh generation
+- 1pt: two erroneous or missing attributes in both cube and sphere mesh generation
+- 0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Transformations
+2.00 / 2.00
+Description	
+- 2pt: implementation handles all transform sequences correctly
+- 1pt: implementation fails to correctly handle some transformations
+- 0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Shading
+2.00 / 3.00
+Description	
+- 3pt: fully correct implementation, handling all three Blinn-Phong shading terms (ambient, diffuse, specular)
+- 2pt: mostly correct implementation (some errors or artifacts in one of the three terms)
+- 1pt: implementation attempted but there are more than one errors or errors in more than one of the three terms
+- 0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+specular off
+
+Texturing
+2.00 / 2.00
+Description	
+- 2pt: fully correct implementation matching sample output for both cube and sphere meshes (note: if errors in `uvCoords` already penalized in the first part, no penalty again here; i.e. assume correct uvCoords for texturing)
+- 1pt: partially correct implementation (textures nor modulated by shading color, textures appear but do not match placement according to instructions etc.)
+- 0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Bonus
+0.00 / 0.00
+Description	
+Creative artifact bonus
+
+Comment	
+Overall
+Comment	
+Total	9.00 / 10.00
