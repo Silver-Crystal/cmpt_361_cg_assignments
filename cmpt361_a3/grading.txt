@@ -1,0 +1,70 @@
+Line Rasterisation
+2.00 / 2.00
+Description	
+2pt: correct handling of all orientations and all low/high start and end point combinations
+
+1pt: implementation that functions correctly in only some cases
+
+0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Linear colour interpolation
+1.00 / 1.00
+Description	
+1pt: correct linear interpolation of color along line from start to end
+
+0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Triangle inside-outside test
+3.00 / 3.00
+Description	
+3pt: fully correct implementation, handling all triangle test cases
+
+2pt: implementation with some errors or artifacts in test cases (e.g., gaps between triangles with shared edge)
+
+1pt: implementation attempted but fails to reliably determine inside-outside in most cases (e.g., no visible triangles rasterized)
+
+0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Triangle rasterization
+2.00 / 2.00
+Description	
+2pt: fully correct implementation with bounding box check to avoid checking all points
+
+1pt: correct implementation but no bounding box check
+
+0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Barycentric color interpolatio
+2.00 / 2.00
+Description	
+2pt: fully correct implementation interpolating colors in all test cases
+
+1pt: implementation that functions correctly in only some cases
+
+0pt: no implementation, or implementation does not function correctly in any case
+
+Comment	
+Creative artifact bonus
+0.00 / 0.00
+Description	
+For non-trivial, visually appealing scene (at least a few primitives with interpolated colors)
+
+Comment	
+Mark Adjustment
+0.00
+Reason	
+Late submission. You used up all 4 late days. Then used another on a previous assignment.
+
+See TA if you need to talk about late policy.
+
+Late Penalty
+-100.00%
+Overall
+Comment	
+Total	0.00 / 10.00
+
+
