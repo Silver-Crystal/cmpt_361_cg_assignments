@@ -351,18 +351,18 @@ Based on assignment grades, these topics were weighted most:
 ## 🔗 Additional Resources
 
 **Course Materials:**
-- Assignment 3 README: `/cmpt361_a3/README.md`
-- Assignment 4 README: `/cmpt361_a4/README.md`
-- Full study guide: `/CMPT361_STUDY_GUIDE.md`
+- Assignment 3 README: `cmpt361_a3/README.md`
+- Assignment 4 README: `cmpt361_a4/README.md`
+- Full study guide: `CMPT361_STUDY_GUIDE.md`
 
 **External References:**
-- Bresenham context: `/cmpt361_a3/context/Bresenham_al.txt`
+- Bresenham context: `cmpt361_a3/context/Bresenham_al.txt`
 - Sphere algorithm: http://www.songho.ca/opengl/gl_sphere.html
 - WebGL fundamentals: https://webglfundamentals.org
 
 **Your Implementations:**
-- Line/triangle code: `/cmpt361_a3/a3.js`
-- Mesh/shading code: `/cmpt361_a4/a4.js`
+- Line/triangle code: `cmpt361_a3/a3.js`
+- Mesh/shading code: `cmpt361_a4/a4.js`
 
 ---
 

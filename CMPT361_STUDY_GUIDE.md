@@ -623,24 +623,28 @@ b) If vertex colors are V₀=red(1,0,0), V₁=green(0,1,0),
 
 **Answer:**
 ```
-a) Using area method:
-   Total area = 0.5 * |6*6| = 18
-   Area opposite V₀ (triangle V₁V₂P): |6*2 - 0*2 + 0*6 - 6*2|/2 = 0
-   Area opposite V₁ (triangle V₂V₀P): |0*2 - 0*0 + 2*6 - 0*2|/2 = 6
-   Area opposite V₂ (triangle V₀V₁P): |0*2 - 6*0 + 6*2 - 0*2|/2 = 6
+a) Using signed area with cross product:
+   For triangle with vertices V₀(0,0), V₁(6,0), V₂(0,6)
+   Total area = 0.5 * |det([6,0], [0,6])| = 0.5 * 36 = 18
+   
+   For barycentric coordinates, using signed area formula:
+   Area(V₁V₂P) = 0.5 * det([V₂-V₁, P-V₁])
+               = 0.5 * det([(-6,6), (-4,2)])
+               = 0.5 * ((-6)*2 - 6*(-4)) = 0.5 * 12 = 6
+   
+   Area(V₂V₀P) = 0.5 * det([V₀-V₂, P-V₂])
+               = 0.5 * det([(0,-6), (2,-4)])
+               = 0.5 * (0*(-4) - (-6)*2) = 0.5 * 12 = 6
+   
+   Area(V₀V₁P) = 0.5 * det([V₁-V₀, P-V₀])
+               = 0.5 * det([(6,0), (2,2)])
+               = 0.5 * (6*2 - 0*2) = 0.5 * 12 = 6
    
    u = 6/18 = 1/3
    v = 6/18 = 1/3
-   w = 0/18 = 0
+   w = 6/18 = 1/3
    
-   Wait, this doesn't add to 1. Let me recalculate...
-   
-   Using cross product for signed area:
-   f₀₁(p) = (y₁-y₀)(px-x₀) - (x₁-x₀)(py-y₀) = 0*2 - 6*2 = -12
-   Total area uses V₂: f₀₁(V₂) = 0*0 - 6*6 = -36
-   w = -12/-36 = 1/3
-   
-   Similarly: u = 1/3, v = 1/3, w = 1/3
+   Check: u + v + w = 1/3 + 1/3 + 1/3 = 1 ✓
    
 b) Color = (1/3)(1,0,0) + (1/3)(0,1,0) + (1/3)(0,0,1) 
          = (1/3, 1/3, 1/3) - gray
@@ -659,10 +663,11 @@ d) What is the result of composing them in order S·R·T?
 
 **Answer:**
 ```
-a) T = [1 0 0 3]      b) R = [0  0 1 0]
-       [0 1 0 -2]            [0  1 0 0]
-       [0 0 1 5]             [-1 0 0 0]
-       [0 0 0 1]             [0  0 0 1]
+a) T = [1 0 0 3]      b) R_y(90°) with cos(90°)=0, sin(90°)=1:
+       [0 1 0 -2]                R = [0  0  1 0]
+       [0 0 1 5]                     [0  1  0 0]
+       [0 0 0 1]                     [-1 0  0 0]
+                                     [0  0  0 1]
 
 c) S = [2   0   0 0]
        [0   0.5 0 0]
